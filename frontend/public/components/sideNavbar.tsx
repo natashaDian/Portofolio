@@ -2,20 +2,20 @@
 
 export default function sidenavbar() {
   return (
-    <div className="flex h-screen w-20 flex-col justify-between border-e border-gray-100 bg-white">
+    <div className="flex h-screen w-20 flex-col justify-between border-e border-gray-600 bg-gray-900">
   <div>
     <div className="inline-flex size-16 items-center justify-center">
-      <span className="grid size-10 place-content-center rounded-lg bg-gray-100 text-xs text-gray-600">
+      <span className="grid size-10 place-content-center rounded-lg bg-gray-50 text-xs text-gray-600">
         N
       </span>
     </div>
 
-    <div className="border-t border-gray-100">
+    <div className="border-t border-gray-600 ">
       <div className="px-2">
         <div className="py-4">
           <a
             href="#"
-            className="t group relative flex justify-center rounded-sm bg-blue-50 px-2 py-1.5 text-blue-700"
+            className="t group relative flex justify-center rounded-sm bg-gray-900 px-2 py-1.5 text-gray-300 hover:text-white"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -40,16 +40,16 @@ export default function sidenavbar() {
             <span
               className="invisible absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded-sm bg-gray-900 px-2 py-1.5 text-xs font-medium text-white group-hover:visible"
             >
-              General
+              Settings
             </span>
           </a>
         </div>
 
-        <ul className="space-y-1 border-t border-gray-100 pt-4">
+        <ul className="space-y-6 border-t border-y-gray-600 pt-4">
           <li>
             <a
               href="#"
-              className="group relative flex justify-center rounded-sm px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+              className="group relative flex justify-center rounded-sm px-2 py-1.5 text-gray-500 hover:scale-105 hover:text-white"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +77,7 @@ export default function sidenavbar() {
           <li>
             <a
               href="#"
-              className="group relative flex justify-center rounded-sm px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+              className="group relative flex justify-center rounded-sm px-2 py-1.5 text-gray-500 hover:scale-105 hover:text-white"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -97,7 +97,7 @@ export default function sidenavbar() {
               <span
                 className="invisible absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded-sm bg-gray-900 px-2 py-1.5 text-xs font-medium text-white group-hover:visible"
               >
-                Billing
+                Project
               </span>
             </a>
           </li>
@@ -105,7 +105,7 @@ export default function sidenavbar() {
           <li>
             <a
               href="#"
-              className="group relative flex justify-center rounded-sm px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+              className="group relative flex justify-center rounded-sm px-2 py-1.5 text-gray-500 scale-105 hover:text-white"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -125,7 +125,7 @@ export default function sidenavbar() {
               <span
                 className="invisible absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded-sm bg-gray-900 px-2 py-1.5 text-xs font-medium text-white group-hover:visible"
               >
-                Invoices
+                #soon
               </span>
             </a>
           </li>
@@ -133,7 +133,7 @@ export default function sidenavbar() {
           <li>
             <a
               href="#"
-              className="group relative flex justify-center rounded-sm px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+              className="group relative flex justify-center rounded-sm px-2 py-1.5 text-gray-500 hover:scale-105 hover:text-white"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -153,7 +153,7 @@ export default function sidenavbar() {
               <span
                 className="invisible absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded-sm bg-gray-900 px-2 py-1.5 text-xs font-medium text-white group-hover:visible"
               >
-                Account
+                #Soon
               </span>
             </a>
           </li>
@@ -162,10 +162,10 @@ export default function sidenavbar() {
     </div>
   </div>
 
-  <div className="sticky inset-x-0 bottom-0 border-t border-gray-100 bg-white p-2">
+  <div className="sticky inset-x-0 bottom-0 border-t border-gray-600 bg-gray-900 p-2">
     <a
       href="#"
-      className="group relative flex w-full justify-center rounded-lg px-2 py-1.5 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+      className="group relative flex w-full justify-center rounded-lg px-2 py-1.5 text-sm text-gray-500 hover:scale-105 hover:text-white"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
