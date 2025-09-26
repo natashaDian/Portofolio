@@ -29,8 +29,8 @@ export default function Home() {
              <button
             key={label}
             onClick={() => setSelectedType(label as "Data" | "Software")}
-            className={`relative rounded-full w-24 h-12 flex items-center justify-center 
-                        ${selectedType === label ? "bg-pink-500" : "bg-gray-700"}
+            className={`relative rounded-full w-24 h-12 flex items-center justify-center hover:scale-105
+                        ${selectedType === label ? "bg-pink-500" : "bg-gray-900"}
                         transition`}>
                 {/* Layer glow */}
                 <div className="absolute inset-0 rounded-full shadow-[0_0_10px_#ff00ff,0_0_15px_#ff00ff]"></div>
