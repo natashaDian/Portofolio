@@ -1,8 +1,11 @@
-import Image from "next/image";
+"use client";
+import { useState } from "react";
 import SideNavbar from "../../public/components/sideNavbar";
 import Divider  from "../../public/components/divider";
+import Projects from "./project";
 
 export default function Home() {
+  const [selectedType, setSelectedType] = useState<"Data" | "Software" >("Data");
   return (
     <div className="flex bg-gray-900">
       <aside className="h-screen fixed left-0 top-0 ">
@@ -22,20 +25,22 @@ export default function Home() {
         <div className="flex flex-col min-h-screen space-x-4 items-start justify-center w-full">
           <Divider />
           <div className="flex flex-row space-x-8 p-6">
-            {["Data", "Software"].map((label, i) => (
-              <div
-                key={i}
-                className="relative rounded-full w-24 h-12 bg-pink-500 flex items-center justify-center"
-              >
+            {["Data", "Software"].map((label) => (
+             <button
+            key={label}
+            onClick={() => setSelectedType(label as "Data" | "Software")}
+            className={`relative rounded-full w-24 h-12 flex items-center justify-center 
+                        ${selectedType === label ? "bg-pink-500" : "bg-gray-700"}
+                        transition`}>
                 {/* Layer glow */}
                 <div className="absolute inset-0 rounded-full shadow-[0_0_10px_#ff00ff,0_0_15px_#ff00ff]"></div>
                 <span className="relative z-10 text-white font-medium">
                   {label}
                 </span>
-              </div>
+              </button>
             ))}
           </div>
-          <div className=""></div>
+          <Projects type={selectedType}/>
         </div>
         <div className="flex min-h-screen items-center justify-center bg-amber-600"></div>
       </main>
