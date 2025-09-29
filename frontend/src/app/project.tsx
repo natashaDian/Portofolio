@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import "animate.css";
 
 type ProjectsProps = {
   type: "Data" | "Software";
@@ -57,7 +58,7 @@ export default function Projects({type}: ProjectsProps) {
                 href={p.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative w-full rounded-xl bg-gray-900 p-4 shadow-[0_0_05px_#ff00ff,0_0_05px_#ff00ff] hover:scale-101 transition-transform"
+                className="relative w-full rounded-xl bg-gray-900 p-4 shadow-[0_0_05px_#ff00ff,0_0_05px_#ff00ff] hover:scale-101 transition-transform duration-300 animate__animated animate__fadeInLeft"
               >
                 <div className=" flex flex-row space-x-4 items-center">
                     <h3 className="text-white font-semibold text-lg">{p.namaprojek}</h3>
