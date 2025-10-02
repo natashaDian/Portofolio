@@ -4,20 +4,10 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const app = express();
-app.use(cors()); //check aman
+app.use(cors());
 app.use(express.json());
 
-// Koneksi DB lalu start server
-mongoose.connect(process.env.MONGODB_URI)
-  .then(() => {
-    console.log("✅MongoDB connected");
-    app.listen(process.env.PORT || 5050, () =>
-      console.log(`‼️ API ready at http://localhost:${process.env.PORT || 5050}`)
-    );
-  })
-  .catch(err => { console.error("MongoDB error:", err); process.exit(1); });
-
-// Schema + Model
+// Schema
 const projectSchema = new mongoose.Schema({
   namaprojek: { type: String, required: true },
   deskripsi: String,
@@ -28,55 +18,35 @@ const projectSchema = new mongoose.Schema({
 });
 const Project = mongoose.model("Project", projectSchema);
 
-app.get("/", (req, res) => res.send("API Successfuly Connected"));
-
-// REST endpoints
-app.get("/projects", async (req, res, next) => {
-  try { res.json(await Project.find().sort({ startingAt: -1 })); }
-  catch (e) { next(e); }
-});
-
-app.get("/projects/:id", async (req, res, next) => {
-  try {
-    const p = await Project.findById(req.params.id);
-    if (!p) return res.status(404).json({ message: "Not found" });
-    res.json(p);
-  } catch (e) { next(e); }
+// Routes
+app.get("/", (req, res) => {
+  res.send("API Connected");
 });
 
 app.get("/projects", async (req, res, next) => {
   try {
-    const {status,type} = req.query;
-    const filter = {};
-    if (status) filter.status = status;
-    if (type) filter.type = type;
+    const { status, type } = req.query;
+    const query = {};
+    if (status) query.status = status;
+    if (type) query.type = type;
 
-    const data = await Project.find(filter).sort({ startingAt: -1 });
-    res.json(data);
-  } catch (e) { next(e); }
+    const projects = await Project.find(query).sort({ startingAt: -1 });
+    res.json(projects);
+  } catch (error) {
+    next(error);
+  }
 });
 
-app.post("/projects", async (req, res, next) => {
-  try { const p = await Project.create(req.body); res.status(201).json(p); }
-  catch (e) { next(e); }
-});
-
-app.put("/projects/:id", async (req, res, next) => {
-  try {
-    const p = await Project.findByIdAndUpdate(req.params.id, req.body, {
-      new: true, runValidators: true
+// MongoDB connect (jangan pakai app.listen di Vercel)
+if (!mongoose.connection.readyState) {
+  mongoose.connect(process.env.MONGODB_URI)
+    .then(() => console.log("✅ MongoDB connected"))
+    .catch(err => {
+      console.error("MongoDB error:", err);
+      process.exit(1);
     });
-    if (!p) return res.status(404).json({ message: "Not found" });
-    res.json(p);
-  } catch (e) { next(e); }
-});
+}
 
-app.delete("/projects/:id", async (req, res, next) => {
-  try { await Project.findByIdAndDelete(req.params.id); res.status(204).end(); }
-  catch (e) { next(e); }
-});
-
-// Error handler minimal
-app.use((err, req, res, next) => {
-  console.error(err); res.status(500).json({ message: "Server error" });
-});
+// ❌ Hilangkan app.listen()
+// ✅ Export app supaya Vercel handle serverless
+module.exports = app;
